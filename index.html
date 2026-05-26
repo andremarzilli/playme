@@ -1,0 +1,412 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="it"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Play.me Playroom - Sound Toy&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>:root {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--bg-color: #fff9e6; /* Giallo crema caldissimo */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--panel-color: #ffffff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--orange: #ff6b35;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--yellow: #f7c544;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--mint: #4ecdc4;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--dark: #2b2d42;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--gray: #e8e3d7;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0; padding: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--bg-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Comic Sans MS', system-ui, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex; justify-content: center; align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-height: 100vh; overflow: hidden; user-select: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Sfondo magico */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.blob-bg {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute; width: 100%; height: 100%; z-index: -1; filter: blur(60px); opacity: 0.7;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.blob { position: absolute; border-radius: 50%; animation: float 8s infinite alternate ease-in-out; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.blob1 { top: 5%; left: 5%; width: 400px; height: 400px; background: var(--orange); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.blob2 { bottom: 5%; right: 5%; width: 500px; height: 500px; background: var(--yellow); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes float { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(40px, 40px) scale(1.2); } }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Il Giocattolo */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.toy-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: var(--panel-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 30px; border-radius: 55px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 35px 0px var(--gray), 0 40px 70px rgba(0,0,0,0.08);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 90%; max-width: 550px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative; border: 5px solid var(--dark);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Schermata iniziale gigante da cameretta */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.audio-unlocker {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute; top: -5px; left: -5px; width: calc(100% + 10px); height: calc(100% + 10px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #ff6b35; border-radius: 55px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex; flex-direction: column; justify-content: center; align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 10; border: 5px solid var(--dark); transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.unlock-btn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: var(--yellow); color: var(--dark);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 4px solid var(--dark); padding: 25px 60px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 28px; font-weight: 900; border-radius: 40px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer; box-shadow: 0 12px 0 var(--dark);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-6px); transition: all 0.1s;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.unlock-btn:active { transform: translateY(2px); box-shadow: 0 4px 0 var(--dark); }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.screen {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: var(--dark); color: #fff; padding: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 25px; text-align: center; font-size: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 25px; font-weight: bold; box-shadow: inset 0 5px 0px rgba(0,0,0,0.2);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Ondofono: Scegli la forma d'onda */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.wave-selector {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex; justify-content: space-between; gap: 10px; margin-bottom: 25px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.wave-btn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex: 1; padding: 15px 5px; border: 3px solid var(--dark);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 22px; background: white; font-weight: 900; font-size: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer; box-shadow: 0 5px 0 var(--dark); transition: all 0.1s;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.wave-btn.active {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: var(--mint); color: white; transform: translateY(3px); box-shadow: 0 2px 0 var(--dark);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* IL SUPER SEQUENCER DEL BAMBINO */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.sequencer-card {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #fdfaf4; border: 4px solid var(--dark);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 35px; padding: 20px 15px; margin-bottom: 25px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.grid-dynamic {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex; justify-content: space-between; height: 160px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: flex-end; position: relative; background: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 20px; border: 3px dashed var(--gray); padding: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.step-column {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex; flex-direction: column; align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: flex-end; height: 100%; width: 11%; position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* La Bolla Magica */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.kid-bubble {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 38px; height: 38px; border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: var(--gray); border: 3px solid var(--dark);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute; bottom: 0; cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: bottom 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s, transform 0.1s;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.kid-bubble.active {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: var(--orange);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 0 rgba(0,0,0,0.1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.kid-bubble.playing {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: scale(1.3);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-color: var(--yellow);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 0 15px var(--orange);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Durata Note (Piccoli interruttori sotto le bolle) */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.len-slider {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 80%; margin-top: 5px; accent-color: var(--dark); cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Regolatori Effetti */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.fx-section {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #fdfaf4; border: 4px solid var(--dark);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 35px; padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: grid; grid-template-columns: 1fr 1fr; gap: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.fx-knob { display: flex; flex-direction: column; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.fx-knob label { font-size: 12px; font-weight: 900; margin-bottom: 6px; text-transform: uppercase; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.fx-knob input[type=range] { width: 100%; accent-color: var(--orange); cursor: pointer; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.transport-bar {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex; gap: 10px; margin-top: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-play {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex: 2; padding: 15px; background: var(--yellow); border: 3px solid var(--dark);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 25px; font-weight: 900; font-size: 18px; cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 6px 0 var(--dark);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-play.active { background: var(--mint); color: white; transform: translateY(3px); box-shadow: 0 3px 0 var(--dark); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-clear {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex: 1; padding: 15px; background: white; border: 3px solid var(--dark);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 25px; font-weight: 900; cursor: pointer; box-shadow: 0 6px 0 var(--dark);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="blob-bg"&gt;&lt;div class="blob blob1"&gt;&lt;/div&gt;&lt;div class="blob blob2"&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="toy-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Splash Screen Bambino --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="audio-unlocker" id="unlocker"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 style="color: white; font-size: 46px; margin: 0 0 5px 0; font-weight: 900;"&gt;play.me 🧸&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p style="color: white; font-size: 16px; margin-bottom: 30px; font-weight: bold;"&gt;Il tuo giocattolo musicale spaziale!&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="unlock-btn" onclick="initAudioMachine()"&gt;ENTRA E SUONA! 🚀&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="screen" id="display"&gt;Scegli i suoni e muovi le bolle!&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Scelta dell'Onda (I 4 Personaggi) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label style="font-size: 11px; font-weight: 900; display:block; margin-bottom:5px;"&gt;1. SCEGLI LA VOCE DEL SYNTH&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="wave-selector"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="wave-btn active" onclick="setWave('sine', this)"&gt;☁️ Dolce&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="wave-btn" onclick="setWave('triangle', this)"&gt;📐 Flauto&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="wave-btn" onclick="setWave('sawtooth', this)"&gt;⚡ Zanzara&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="wave-btn" onclick="setWave('square', this)"&gt;🤖 Robot&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Il Sequencer Verticale --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="sequencer-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label style="font-size: 11px; font-weight: 900; display:block; margin-bottom:10px;"&gt;2. SPOSTA LE BOLLE IN ALTO E IN BASSO PER CAMBIARE NOTA!&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid-dynamic" id="sequencer-grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Generato via JavaScript per gestire le altezze delle note --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Effetti Spaziali (Filtro, Delay, Riverbero) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="fx-section"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="fx-knob"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label&gt;Muffola (Filtro)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="range" id="filterKnob" min="200" max="5000" value="2500" oninput="updateFX()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="fx-knob"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label&gt;Eco (Delay)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="range" id="delayKnob" min="0" max="80" value="30" oninput="updateFX()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="fx-knob" style="grid-column: span 2;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label&gt;Stanza Spaziale (Riverbero) 🌌&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="range" id="reverbKnob" min="0" max="100" value="40" oninput="updateFX()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="transport-bar"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="btn-play" id="playBtn" onclick="togglePlay()"&gt;AVVIA MUSICA 🔄&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="btn-clear" onclick="resetAll()"&gt;CANCELLA 🧼&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let audioCtx = null;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let mainFilter = null;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let delayNode = null;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let delayFeedback = null;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let reverbNode = null;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let reverbGain = null;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>let currentWave = 'sine';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let isPlaying = false;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let currentStep = 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let timerId = null;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Stato del Sequencer: 8 step. Ogni step ha: active (true/false), pitchStep (0-5 altezza), duration (0.1 - 0.8 secondi)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let stepsData = Array.from({length: 8}, () =&gt; ({ active: false, pitchStep: 0, duration: 0.2 }));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const pentatonicScale = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25]; // Do, Re, Mi, Sol, La, Do</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Costruisci graficamente il sequencer ad altezze</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const grid = document.getElementById('sequencer-grid');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>for(let i=0; i&lt;8; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let col = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>col.className = 'step-column';</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>let bubble = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bubble.className = 'kid-bubble';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bubble.id = `bubble-${i}`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Cambia altezza e attiva al click</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bubble.onclick = () =&gt; handleBubbleClick(i);</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>let lenSlider = document.createElement('input');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>lenSlider.type = 'range';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>lenSlider.className = 'len-slider';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>lenSlider.min = '0.05'; lenSlider.max = '0.8'; lenSlider.step = '0.05'; lenSlider.value = '0.2';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>lenSlider.oninput = (e) =&gt; { stepsData[i].duration = parseFloat(e.target.value); };</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>col.appendChild(bubble);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>col.appendChild(lenSlider);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>grid.appendChild(col);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function handleBubbleClick(index) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let data = stepsData[index];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!data.active) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>data.active = true;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>data.pitchStep = 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>data.pitchStep = (data.pitchStep + 1) % 6;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (data.pitchStep === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>data.active = false;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderSequencerUI();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (data.active &amp;&amp; audioCtx) playPreviewTone(pentatonicScale[data.pitchStep], data.duration);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function renderSequencerUI() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>for(let i=0; i&lt;8; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let bubble = document.getElementById(`bubble-${i}`);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let data = stepsData[i];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if(data.active) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>bubble.classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Sposta fisicamente la bolla verso l'alto in base alla nota scelto (6 livelli)</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>bubble.style.bottom = `${(data.pitchStep * 22) + 25}px`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>bubble.classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>bubble.style.bottom = '25px';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function setWave(wave, btn) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>currentWave = wave;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.wave-btn').forEach(b =&gt; b.classList.remove('active'));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>btn.classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('display').innerText = `Voce cambiata in: ${btn.innerText}`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function initAudioMachine() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>audioCtx = new (window.AudioContext || window.webkitAudioContext)();</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>mainFilter = audioCtx.createBiquadFilter();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>mainFilter.type = 'lowpass';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>delayNode = audioCtx.createDelay();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>delayFeedback = audioCtx.createGain();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>delayNode.delayTime.value = 0.25;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Il modulo di Riverbero Sintetico Spaziale</p>
+<p class="p1"><span class="Apple-converted-space">            </span>reverbNode = audioCtx.createConvolver();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>reverbNode.buffer = createReverbImpulseResponse(2.5, 2.0); // 2.5 secondi di coda creata al volo!</p>
+<p class="p1"><span class="Apple-converted-space">            </span>reverbGain = audioCtx.createGain();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Cablaggio Audio: Osc -&gt; Filtro -&gt; Delay &amp; Reverb -&gt; Master</p>
+<p class="p1"><span class="Apple-converted-space">            </span>delayNode.connect(delayFeedback);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>delayFeedback.connect(delayNode);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>reverbNode.connect(reverbGain);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('unlocker').style.transform = 'translateY(-110%)';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateFX();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Funzione magica per generare un riverbero sintetico senza file esterni</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function createReverbImpulseResponse(duration, decay) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let sampleRate = 44100;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let length = sampleRate * duration;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let impulse = (window.AudioContext || window.webkitAudioContext) ? new AudioContext().createBuffer(2, length, sampleRate) : new webkitAudioContext().createBuffer(2, length, sampleRate);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let left = impulse.getChannelData(0);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let right = impulse.getChannelData(1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (let i = 0; i &lt; length; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let percent = i / length;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let formula = Math.pow(1 - percent, decay) * (Math.random() * 2 - 1);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>left[i] = formula; right[i] = formula;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return impulse;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function updateFX() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if(!audioCtx) return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let f = document.getElementById('filterKnob').value;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let d = document.getElementById('delayKnob').value / 100;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let r = document.getElementById('reverbKnob').value / 100;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>mainFilter.frequency.setValueAtTime(f, audioCtx.currentTime);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>delayFeedback.gain.setValueAtTime(d, audioCtx.currentTime);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>reverbGain.gain.setValueAtTime(r, audioCtx.currentTime);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function togglePlay() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if(!audioCtx) return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>isPlaying = !isPlaying;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let btn = document.getElementById('playBtn');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if(isPlaying) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>btn.innerText = "FERMA IL GIOCO 🛑";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>btn.classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>currentStep = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>runLoop();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>btn.innerText = "AVVIA MUSICA 🔄";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>btn.classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>clearTimeout(timerId);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.querySelectorAll('.kid-bubble').forEach(b =&gt; b.classList.remove('playing'));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function runLoop() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let bubbles = document.querySelectorAll('.kid-bubble');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bubbles.forEach(b =&gt; b.classList.remove('playing'));</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>let activeBubble = document.getElementById(`bubble-${currentStep}`);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>activeBubble.classList.add('playing');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>let stepData = stepsData[currentStep];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if(stepData.active) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>playFatTone(pentatonicScale[stepData.pitchStep], stepData.duration);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>currentStep = (currentStep + 1) % 8;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>timerId = setTimeout(runLoop, 300); // Velocità fissa da filastrocca per bambini</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function playFatTone(freq, duration) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let osc = audioCtx.createOscillator();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let gain = audioCtx.createGain();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>osc.type = currentWave;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>osc.frequency.setValueAtTime(freq, audioCtx.currentTime);</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Gestione dell'inviluppo della nota (attacco e rilascio morbido)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gain.gain.setValueAtTime(0.25, audioCtx.currentTime);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Connessioni</p>
+<p class="p1"><span class="Apple-converted-space">            </span>osc.connect(mainFilter);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>mainFilter.connect(gain);</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>gain.connect(audioCtx.destination); // Suono Diretto</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gain.connect(delayNode);<span class="Apple-converted-space">            </span>// Mandata al Delay</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gain.connect(reverbNode); <span class="Apple-converted-space">          </span>// Mandata al Riverbero</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>osc.start();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>osc.stop(audioCtx.currentTime + duration);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function playPreviewTone(freq, duration) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let osc = audioCtx.createOscillator();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let gain = audioCtx.createGain();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>osc.type = currentWave;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>osc.frequency.setValueAtTime(freq, audioCtx.currentTime);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gain.gain.setValueAtTime(0.15, audioCtx.currentTime);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>osc.connect(audioCtx.destination);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>osc.start(); osc.stop(audioCtx.currentTime + duration);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function resetAll() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>stepsData = Array.from({length: 8}, () =&gt; ({ active: false, pitchStep: 0, duration: 0.2 }));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.len-slider').forEach(s =&gt; s.value = 0.2);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderSequencerUI();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('display').innerText = "Tutto pulito! Ricomincia da capo.";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
